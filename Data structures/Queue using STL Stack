@@ -1,0 +1,105 @@
+#include <iostream>
+#include <stack> 
+
+using namespace std;
+
+class queue
+{
+    public:
+    std::stack <int> q;
+    int push(int ele);
+    int pop();
+    int front();
+    int back();
+    int size();
+    bool isEmpty();
+};
+
+int queue::push(int ele)
+{
+
+    q.push(ele);
+}
+
+int queue::pop()
+{
+    int temp;
+    std::stack <int> a;
+    while(q.top()!=0)
+    {
+        temp=q.top();
+        a.push(temp);
+        q.pop();
+    }
+    a.pop();
+    while(a.top()!=0)
+    {
+        temp=a.top();
+        q.push(temp);
+        a.pop();
+    }
+}
+
+int queue::front()
+{
+    return(q.top());
+}
+
+int queue::back()
+{
+    int temp;
+    while(q.top()!=0)
+    {
+        temp=q.top();
+        q.pop();
+    }
+    return(temp);
+}
+
+bool queue::isEmpty()
+{
+    return(q.empty());
+}
+
+int queue::size()
+{
+    return(q.size());
+}
+
+int main()
+{
+    queue q;
+    int ch, ele;
+    char c;
+    
+    do
+    {
+        std::cout << "Enter your choice : " << std::endl;
+        std::cout << "1.Insert \n2.Delete \n3.Front \n4.Rear \n5.Size of Queue " << std::endl;
+        std::cin >> ch;
+        switch(ch)
+        {
+            case 1: std::cout << "Enter the element to be inserted : " << std::endl;
+                    std::cin >> ele;
+                    q.push(ele);
+                    break;
+            case 2: q.pop();
+                    break;
+            case 3: ele=q.front();
+                    std::cout << "Top most element of the queue is : "<< ele << std::endl;
+                    break;
+            case 4: ele=q.back();
+                    std::cout << "Top most element of the queue is : "<< ele << std::endl;
+                    break;
+            case 5: ele = q.size();
+                    std::cout << "Size of the queue is : " << ele <<std::endl;
+                    break;
+            default: std::cout << "Enter valid choice!!!" << std::endl;
+        }
+        std::cout << "Do you want to continue(Y/N): " << std::endl;
+        std::cin >> c;
+    }while(c=='Y'||c=='y');
+}
+
+
+
