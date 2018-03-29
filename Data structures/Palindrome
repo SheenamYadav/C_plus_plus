@@ -1,0 +1,52 @@
+#include <iostream>
+#include <stack>
+void Palindrome(char str[],int len)
+{
+    char strrev[len];
+    std::stack<char> S;
+    int flg = 0;
+    for(int i = 0; i<len; i++)
+    {
+        S.push(str[i]);
+    }
+    for (int i = 0; i<len;i++)
+    {
+        strrev[i] = S.top();
+        S.pop();
+    }
+    for(int i = 0; i<len;i++)
+    {
+        if(str[i]==strrev[i])
+        {
+            flg = flg+1;
+        }
+        else
+        {
+            flg = 0;
+        }
+    }
+    if(flg==len)
+        {
+            std::cout << "String is a Palindrome." << std::endl;
+        }
+    else
+        {
+            std::cout << "String is not a Palindrome." << std::endl;
+        }
+}
+int main()
+{
+    int len;
+    std::cout<<"Enter length of the string : ";
+    std::cin>>len;
+    char str[len];
+    std::cout<<"Enter string : ";
+    for(int i = 0; i<len;i++)
+    {
+        std::cin>>str[i];
+        /*S.push(str[i]);*/
+    }
+    Palindrome(str,len);
+    return(0);
+}
+
