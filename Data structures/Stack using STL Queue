@@ -1,0 +1,83 @@
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+class stack
+{
+    public:
+    std::queue <int> stk ;
+    int push(int ele);
+    int pop();
+    int top();
+    int size();
+    bool isEmpty();
+};
+
+int stack::push(int ele)
+{
+    stk.push(ele);
+}
+
+int stack::pop()
+{
+    int temp;
+    int top = stk.front();
+    while(stk.front()!=stk.back())
+    {
+        temp = stk.front();
+        stk.pop();
+        stk.push(temp);
+    }
+    stk.pop();
+}
+
+bool stack::isEmpty()
+{
+    return(stk.empty());
+}
+
+int stack::top()
+{
+    int ele = stk.back();
+    return(ele);
+}
+
+int stack::size()
+{
+    int s = stk.size();
+    return(s);
+}
+
+int main()
+{
+    stack s;
+    int ch, ele;
+    char c;
+    do{
+        std::cout << "Enter your choice : " << std::endl;
+        std::cout << "1.Insert \n2.Delete \n3.Top \n4.Size of Stack" << std::endl;
+        std::cin >> ch;
+        switch(ch)
+        {
+            case 1: std::cout << "Enter the element to be inserted : " << std::endl;
+                    std::cin >> ele;
+                    s.push(ele);
+                    break;
+            case 2: s.pop();
+                    break;
+            case 3: ele=s.top();
+                    std::cout << "Top most element of the stack is : "<< ele << std::endl;
+                    break;
+            case 4: ele = s.size();
+                    std::cout << "Size of the stack is : " << ele <<std::endl;
+                    break;
+            default: std::cout << "Enter valid choice!!!" << std::endl;
+        }
+        std::cout << "Do you want to continue(Y/N): " << std::endl;
+        std::cin >> c;
+    }while(c=='Y'||c=='y');
+}
+
+
+
