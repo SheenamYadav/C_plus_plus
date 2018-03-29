@@ -1,0 +1,135 @@
+#include <iostream>
+#include <cstdlib>
+#define MAXSIZE 100  // or const int MAXSIZE=100;
+
+using namespace std;
+
+
+class stack
+	/*
+	objective: Create a class for implementing Stack using array
+	input parameters: none
+	output value: none
+	description:  class definition
+	approach: Class defines data member and member function of the stack class
+	*/
+{
+	int *arr;					// for dynamic array 
+	int top;
+	int capacity;					// checks size defined by user
+public:
+	stack(int size = MAXSIZE);			// constructor to create array dynamically
+	int push(int ele);
+	int pop();
+	int peek();
+	int size();					// Current size of stack
+	bool isEmpty();
+	bool isFull();
+	int count=0;
+};
+
+stack::stack(int size)
+{
+    int *arr[size];
+    int count = 0;
+    std::cout << arr[count] << std::endl;
+}
+int stack::push(int ele)
+{
+    std::cout << "Asd" << std::endl;
+    if (isFull())
+    {
+        std::cout << "Overflow!!" << std::endl;
+    }
+    else if (count<=MAXSIZE)
+    {
+        std::cout << count << std::endl;
+        std::cout << "else if" << std::endl;
+        std::cout << count << std::endl;
+        arr[count] = ele;
+        std::cout << arr[count] << std::endl;
+        count++;
+
+    }
+    else
+    {
+        std::cout << "Index out of range." << std::endl;
+    }
+    
+}
+
+int stack::pop()
+{
+    if(isEmpty())
+    {
+        std::cout << "Underflow!!" << std::endl;
+    }
+    else if(count<=MAXSIZE)
+    {
+        int temp = arr[count];
+        arr[count] = 0;
+        std::cout << "deleted element is : "<<temp;
+        count--;
+    }
+    else
+    {
+        std::cout << "Index out of range." << std::endl;
+    }
+}
+
+int stack::peek()
+{
+    return(arr[count]);
+}
+
+int stack::size()
+{
+    return(count);
+}
+
+bool stack::isEmpty()
+{
+    return(count==0);
+}
+
+bool stack::isFull()
+{
+    return(count==MAXSIZE);
+}
+
+int main()
+{
+    stack stk;
+    int ch, ele;
+    char c;
+    std::cout << "Enter your choice : " << std::endl;
+    std::cout << "1.Insert \n2.Delete \n3.Top \n4.Size of Stack" << std::endl;
+    std::cin >> ch;
+    do
+    {
+        switch(ch)
+        {
+            case 1: std::cout << "Enter the element to be inserted : " << std::endl;
+                    std::cin >> ele;
+                    stk.push(ele);
+                    break;
+            case 2: stk.pop();
+                    break;
+            case 3: ele=stk.peek();
+                    std::cout << "Top most element of the stack is : "<< ele << std::endl;
+                    break;
+            case 4: ele = stk.size();
+                    std::cout << "Size of the stack is : " << ele <<std::endl;
+                    break;
+            default: std::cout << "Enter valid choice!!!" << std::endl;
+        }
+        std::cout << "Do you want to continue(Y/N): " << std::endl;
+        std::cin >> c;
+    }while(c=='Y'||c=='y');
+}
+
+
+
+
+
+
