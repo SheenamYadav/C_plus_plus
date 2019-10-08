@@ -57,7 +57,7 @@ bool queue::isFull(){
 		return true;
 		//cout<<"isfull";	
 	}
-	if(front==rear+1)
+	else if(front==rear+1)
 		return true;
 		
 	else 
